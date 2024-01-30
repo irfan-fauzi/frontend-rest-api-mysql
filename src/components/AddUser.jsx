@@ -5,7 +5,7 @@ import axios from "axios";
 const AddUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("male");
   const navigate = useNavigate();
 
   const saveUser = async (e) => {
@@ -16,7 +16,7 @@ const AddUser = () => {
         email,
         gender,
       });
-      navigate('/')
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +35,7 @@ const AddUser = () => {
                 placeholder="name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+                required
               />
             </div>
           </div>
@@ -47,6 +48,7 @@ const AddUser = () => {
                 placeholder="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                required
               />
             </div>
           </div>
