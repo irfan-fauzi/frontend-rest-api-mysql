@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-
+  const navigate = useNavigate();
   const getUsers = async () => {
     const response = await axios.get("http://localhost:5000/users");
     setUsers(response.data);
   };
 
   useEffect(() => {
+    const controller = new AbortController();
     getUsers();
+    return () => {
+      controller.abort()
+    }
   }, []);
 
   return (
@@ -34,7 +39,12 @@ const UserList = () => {
                 <td>{user.email}</td>
                 <td>{user.gender}</td>
                 <td>
-                  <button className="button is-small is-info">Edit</button>
+                  <button
+                    className="button is-small is-info"
+                    onClick={() => navigate(`/edit/${user.id}`)}
+                  >
+                    Edit
+                  </button>
                   <button className="button is-small is-danger">Delete</button>
                 </td>
               </tr>
