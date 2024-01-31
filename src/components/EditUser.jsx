@@ -26,7 +26,6 @@ const EditUser = () => {
 
   const getUserById = async () => {
     try {
-      
       const response = await axios.get(`http://localhost:5000/users/${id}`);
       const user = response.data;
       setName(user.name);
