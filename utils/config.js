@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+
 export const config = {
-  mainUrl: "https://irfanfauzi-api.up.railway.app/users"
-}
+  mainUrl: import.meta.env.VITE_USERS_URL,
+  singleUrl: import.meta.env.VITE_USER_URL,
+};

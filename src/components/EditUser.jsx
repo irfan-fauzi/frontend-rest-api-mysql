@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { config } from "../../utils/config";
 
 const EditUser = () => {
   const [name, setName] = useState("");
@@ -13,7 +15,7 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
+      await axios.patch(`${config.singleUrl}/${id}`, {
         name,
         email,
         gender,
@@ -26,7 +28,7 @@ const EditUser = () => {
 
   const getUserById = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/users/${id}`);
+      const response = await axios.get(`${config.singleUrl}/${id}`);
       const user = response.data;
       setName(user.name);
       setEmail(user.email);
