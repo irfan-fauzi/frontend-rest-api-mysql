@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { config } from "../../utils/config";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ const AddUser = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/users", {
+      await axios.post(config.mainUrl, {
         name,
         email,
         gender,

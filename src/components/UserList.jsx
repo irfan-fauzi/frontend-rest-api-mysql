@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { config } from "../../utils/config";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/users");
+    const response = await axios.get(config.mainUrl);
     setUsers(response.data);
   };
 
