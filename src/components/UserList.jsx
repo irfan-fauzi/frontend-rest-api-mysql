@@ -10,6 +10,15 @@ const UserList = () => {
     setUsers(response.data);
   };
 
+  const deleteUser = async (id) => {
+    try {
+      await axios.delete(`${config.singleUrl}/${id}`);
+      getUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const controller = new AbortController();
     getUsers();
@@ -42,8 +51,18 @@ const UserList = () => {
                 <td>{user.email}</td>
                 <td>{user.gender}</td>
                 <td>
-                  <Link to={`/edit/${user.id}`} className="button is-small is-info">Edit</Link>
-                  <button className="button is-small is-danger">Delete</button>
+                  <Link
+                    to={`/edit/${user.id}`}
+                    className="button is-small is-info"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => deleteUser(user.id)}
+                    className="button is-small is-danger"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
